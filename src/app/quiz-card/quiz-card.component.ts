@@ -1,26 +1,27 @@
-import {
-  Component, OnInit, AfterContentInit, OnDestroy, AfterViewInit,
-  OnChanges, DoCheck, AfterViewChecked, AfterContentChecked, Input
-} from '@angular/core';
-import * as moment from 'moment';
+import {Component, EventEmitter, Input, OnChanges, OnDestroy, Output,
+  OnInit, AfterViewInit, DoCheck, AfterContentInit, AfterContentChecked, AfterViewChecked} from '@angular/core';
+import {Subject} from 'rxjs';
 
+
+// tslint:disable-next-line: no-conflicting-lifecycle
 @Component({
-  selector: 'app-test',
-  templateUrl: './test.component.html',
-  styleUrls: ['./test.component.css']
+  selector: 'quiz-card',
+  templateUrl: './quiz-card.component.html',
+  styleUrls: ['./quiz-card.component.css']
 })
-export class TestComponent implements OnInit, AfterViewInit, OnChanges,
-  DoCheck, AfterContentInit, AfterContentChecked,
-  AfterViewInit, AfterViewChecked, OnDestroy {
+export class QuizCardComponent implements OnInit, AfterViewInit, OnChanges,
+DoCheck, AfterContentInit, AfterContentChecked,
+AfterViewInit, AfterViewChecked, OnDestroy {
 
-  @Input() name;
+  destroy$ = new Subject();
+  answeredCorrectly: boolean;
+
   initialTime = 0;
 
   constructor() {
-    // performe now source
-    // https://developer.mozilla.org/en-US/docs/Web/API/Performance/now
     this.initialTime = performance.now(); // take time in milisecond
-  }
+
+   }
 
   ngOnChanges() {
     this.performTime('OnChange');
@@ -53,8 +54,11 @@ export class TestComponent implements OnInit, AfterViewInit, OnChanges,
     this.performTime('AfterContentCheck');
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
     this.performTime('OnDestroy');
+
   }
 
   private performTime(eventToChek: string): number {

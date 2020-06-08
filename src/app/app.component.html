@@ -1,14 +1,10 @@
-<!-- The content below is only a placeholder and can be replaced. -->
-<div style="text-align:center">
-    <h1>Testing Performance </h1>
-    <h4>Check console log to see details </h4>
-   Set Name to test onChange <input [(ngModel)]="name">
-   <hr/>
-   <p></p>
-   <div class="container">
-    <app-test [name]='name'></app-test>
-    </div>
-    
-</div>
-
-
+  
+<h1>Test with Angular Material</h1>
+<nav>
+  <ul>
+    <li><a routerLink="table" routerLinkActive="active">Table</a></li>
+    <li><a routerLink="card" routerLinkActive="active">Card</a></li>
+  </ul>
+</nav>
+<!-- The routed views render in the <router-outlet>-->
+<router-outlet></router-outlet>
