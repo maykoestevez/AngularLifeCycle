@@ -19,7 +19,7 @@ export class TestComponent implements OnInit, AfterViewInit, OnChanges,
   constructor() {
     // performe now source
     // https://developer.mozilla.org/en-US/docs/Web/API/Performance/now
-    this.initialTime = performance.now();
+    this.initialTime = performance.now(); // take time in milisecond
   }
 
   ngOnChanges() {
