@@ -15,61 +15,46 @@ export class TestComponent implements OnInit, AfterViewInit, OnChanges,
 
   @Input() name;
   initialTime = 0;
-  onChangeTime: number;
-  onInitTime: number;
-  onDoCheckTime: number;
-  AfterContentInitTime: number;
-  afterContentCheckedTime: number;
-  afterViewInitTime: number;
-  afterContentCheckTime: number;
-  destroyTime: number;
-  afterViewCheckedTime: number;
 
   constructor() {
+    // performe now source
+    // https://developer.mozilla.org/en-US/docs/Web/API/Performance/now
     this.initialTime = performance.now();
   }
 
   ngOnChanges() {
-    const onChange = this.performTime('OnChange');
-    this.onChangeTime = onChange;
+    this.performTime('OnChange');
   }
 
   ngOnInit() {
-    const onInit = this.performTime('OnInit');
-    this.onInitTime = onInit;
+    this.performTime('OnInit');
   }
   ngDoCheck() {
-    const onDoCheck = this.performTime('DoCheck');
-    this.onDoCheckTime = onDoCheck;
+    this.performTime('DoCheck');
   }
 
   ngAfterContentInit() {
-    const afterContentInit = this.performTime('AfterContentInit');
-    this.AfterContentInitTime = afterContentInit;
+    this.performTime('AfterContentInit');
   }
+
   ngAfterContentChecked() {
-    const afterContentChecked = this.performTime('AfterContentChecked');
-    this.afterContentCheckedTime = afterContentChecked;
+    this.performTime('AfterContentChecked');
   }
 
   ngAfterViewInit() {
-    const afterViewInit = this.performTime('AfterInit');
-    this.afterViewInitTime = afterViewInit;
+    this.performTime('AfterInit');
   }
+
   ngAfterViewChecked() {
-    const afterViewChecked = this.performTime('AfterViewChecked');
-    this.afterViewCheckedTime = afterViewChecked;
+    this.performTime('AfterViewChecked');
   }
 
   ngAfterContentCheck() {
-    const afterContentCheck = this.performTime('AfterContentCheck');
-    this.afterContentCheckTime = afterContentCheck;
+    this.performTime('AfterContentCheck');
   }
 
   ngOnDestroy() {
-    const destroy = this.performTime('OnDestroy');
-    this.destroyTime = destroy;
-
+    this.performTime('OnDestroy');
   }
 
   private performTime(eventToChek: string): number {
